@@ -1,8 +1,19 @@
-﻿namespace DarkSalo.Infrastructure
+﻿using System;
+
+namespace DarkSalo.Infrastructure
 {
-    public interface IState
+    public interface IState : IExitableState
     {
         void Enter();
+    }
+
+    public interface IExitableState
+    {
         void Exit();
+    }
+    
+    public interface IPayloadedState<TPayLoad> : IExitableState
+    {
+        void Enter(TPayLoad payLoad);
     }
 }

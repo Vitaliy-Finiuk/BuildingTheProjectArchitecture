@@ -13,8 +13,8 @@ namespace DarkSalo.Infrastructure
 
         public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
         {
-            _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
+            _stateMachine = stateMachine;
         }
 
         public void Enter()
@@ -25,7 +25,7 @@ namespace DarkSalo.Infrastructure
 
         private void EnterLoadLevel()
         {
-            
+            _stateMachine.Enter<LoadLevelState, string>( "Main");
         }
 
         private void RegisterServices()

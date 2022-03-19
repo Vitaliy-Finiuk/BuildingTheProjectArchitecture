@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using DarkSalo.Infrastructure;
-using DarkSalo.Services.Input;
 using UnityEngine;
 
 namespace DarkSalo.Player
@@ -12,18 +9,11 @@ namespace DarkSalo.Player
         [SerializeField] private float _movementSpeed;
         
         private Camera _camera;
-        
-
         private IInputService _inputService;
         
         private void Awake()
         {
             _inputService = GameHandler.InputService;
-        }
-
-        private void Start()
-        {
-            _camera = Camera.main;
         }
 
         private void Update()
@@ -32,7 +22,7 @@ namespace DarkSalo.Player
 
             if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
             {
-                movementVector = _camera.transform.TransformDirection(_inputService.Axis);
+                movementVector = Camera.main.transform.TransformDirection(_inputService.Axis);
                 movementVector.y = 0;
                 movementVector.Normalize();
                 
